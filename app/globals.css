@@ -28,3 +28,61 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Orbit rotation animation */
+@keyframes orbit-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Counter-rotation to keep logos upright */
+@keyframes counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Pause animation on hover */
+.orbit-container:hover .orbit-ring {
+  animation-play-state: paused;
+}
+
+/* Responsive orbit radius via CSS custom property */
+.orbit-logo {
+  --orbit-radius: 140px;
+}
+
+@media (min-width: 768px) {
+  .orbit-logo {
+    --orbit-radius: 180px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .orbit-logo {
+    --orbit-radius: 220px;
+  }
+}
+
+/* Pause counter-rotation on hover (same as orbit) */
+.orbit-container:hover .orbit-logo-inner {
+  animation-play-state: paused;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring {
+    animation: none !important;
+  }
+  
+  .orbit-logo-inner {
+    animation: none !important;
+  }
+}

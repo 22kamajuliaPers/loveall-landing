@@ -1,4 +1,5 @@
 import WaitlistForm from "../components/WaitlistForm";
+import Logo from "../components/Logo";
 
 export const metadata = {
   title: "Join the LoveAll Waitlist",
@@ -7,7 +8,12 @@ export const metadata = {
 
 export default function WaitlistPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative">
+      {/* Logo in top-left */}
+      <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20">
+        <Logo />
+      </div>
+      
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
           {/* Left Side - Heading and Text */}

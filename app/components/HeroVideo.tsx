@@ -61,14 +61,14 @@ export default function HeroVideo() {
           <a
             href="#about"
             onClick={(e) => handleSmoothScroll(e, "about")}
-            className="text-white text-sm md:text-base font-medium hover:underline transition-all duration-200"
+            className="text-white text-2xl md:text-3xl font-medium hover:underline transition-all duration-200"
           >
             About
           </a>
           <a
             href="#contact"
             onClick={(e) => handleSmoothScroll(e, "contact")}
-            className="text-white text-sm md:text-base font-medium hover:underline transition-all duration-200"
+            className="text-white text-2xl md:text-3xl font-medium hover:underline transition-all duration-200"
           >
             Contact
           </a>
@@ -82,7 +82,7 @@ export default function HeroVideo() {
         </h1>
 
         <p className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-gray-100 mb-10 leading-relaxed">
-          LoveAll is built to get you off the app and into real game-day moments.
+          The App Where Sports Fans Meet Their Match.
         </p>
 
         <Link
