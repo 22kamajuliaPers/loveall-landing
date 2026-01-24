@@ -78,7 +78,7 @@ export default function HeroVideo() {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-          Matches don't matter. Dates do.
+          Meet through the sports you already love.
         </h1>
 
         <p className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-gray-100 mb-10 leading-relaxed">

@@ -86,3 +86,239 @@ body {
     animation: none !important;
   }
 }
+
+/* Problem/Solution Section Styles */
+.problem-section,
+.solution-section {
+  background: linear-gradient(180deg, #050505 0%, #0b0b0b 100%);
+  position: relative;
+}
+
+/* Vignette effect */
+.vignette-overlay {
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* Grain/noise texture */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Problem Card */
+.problem-card {
+  position: relative;
+}
+
+.problem-card-inner {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 0 40px rgba(97, 246, 197, 0.03),
+    0 0 20px rgba(97, 246, 197, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(97, 246, 197, 0.2) 0%, rgba(97, 246, 197, 0) 50%, rgba(97, 246, 197, 0.1) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glow effects */
+.glow-number {
+  filter: drop-shadow(0 0 8px rgba(97, 246, 197, 0.6)) drop-shadow(0 0 16px rgba(97, 246, 197, 0.3));
+}
+
+.glow-icon {
+  filter: drop-shadow(0 0 4px rgba(97, 246, 197, 0.4)) drop-shadow(0 0 8px rgba(97, 246, 197, 0.2));
+}
+
+.glow-x {
+  filter: drop-shadow(0 0 6px rgba(97, 246, 197, 0.8)) drop-shadow(0 0 12px rgba(97, 246, 197, 0.4));
+}
+
+/* Crossed-out "NOT" text styling - Hand-drawn feel */
+.problem-not-text {
+  position: relative;
+  color: #d1d5db;
+  display: inline-block;
+}
+
+.solution-not-text {
+  position: relative;
+  color: #d1d5db;
+  display: inline-block;
+}
+
+/* Disable ::after strikethrough for solution-not-text - using animated overlay instead */
+.solution-not-text::before,
+.solution-not-text::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.problem-not-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(255, 59, 59, 0.8) 0%,
+    rgba(255, 59, 59, 1) 20%,
+    rgba(255, 59, 59, 0.9) 50%,
+    rgba(255, 59, 59, 1) 80%,
+    rgba(255, 59, 59, 0.8) 100%
+  );
+  transform: translateY(-50%) rotate(-1deg);
+  box-shadow: 0 0 4px rgba(255, 59, 59, 0.4);
+  border-radius: 1px;
+}
+
+/* Solution Card Styling - Glass style */
+.solution-card {
+  background: linear-gradient(135deg, 
+    rgba(20, 20, 25, 0.8) 0%,
+    rgba(15, 20, 20, 0.7) 100%
+  );
+  border: 1px solid rgba(97, 246, 197, 0.15);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 60px rgba(97, 246, 197, 0.03),
+    0 0 30px rgba(97, 246, 197, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.solution-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, 
+    rgba(97, 246, 197, 0.5),
+    rgba(97, 246, 197, 0.3),
+    rgba(97, 246, 197, 0.5)
+  );
+  border-radius: 2px 0 0 2px;
+  box-shadow: 0 0 8px rgba(97, 246, 197, 0.3);
+}
+
+/* Check Icon Glow */
+.solution-check {
+  filter: drop-shadow(0 0 6px rgba(97, 246, 197, 0.6)) drop-shadow(0 0 12px rgba(97, 246, 197, 0.3));
+  box-shadow: 0 0 8px rgba(97, 246, 197, 0.4);
+}
+
+/* Green Dash Glow */
+.glow-dash {
+  filter: drop-shadow(0 0 4px rgba(97, 246, 197, 0.8)) drop-shadow(0 0 8px rgba(97, 246, 197, 0.4));
+  box-shadow: 0 0 6px rgba(97, 246, 197, 0.6);
+}
+
+/* Solution Arrow Glow - Subtle */
+.solution-arrow-image {
+  filter: drop-shadow(0 0 3px rgba(97, 246, 197, 0.6)) drop-shadow(0 0 6px rgba(97, 246, 197, 0.3));
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Solution Divider Line - Under headline */
+.solution-divider-line {
+  filter: blur(1px);
+  box-shadow: 0 0 8px rgba(97, 246, 197, 0.4), 0 0 16px rgba(97, 246, 197, 0.2);
+  opacity: 0.6;
+}
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink-cursor 1s step-end infinite;
+  opacity: 0.9;
+}
+
+@keyframes blink-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Respect reduced motion for typewriter */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Strike animation - respects reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .strike-overlay {
+    transition: none !important;
+    transform: translateY(-50%) scaleX(1) !important;
+  }
+}
+
+/* Solution Rows Container - Tight vertical spacing */
+.solution-rows-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Mobile: 20px */
+}
+
+@media (min-width: 1024px) {
+  .solution-rows-container {
+    gap: 28px; /* Desktop: 28px */
+  }
+}
+
+/* Ensure rows have no extra margins */
+.solution-row {
+  margin: 0;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+  background: #050505;
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .problem-card-inner {
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .problem-not-text {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .glow-icon {
+    width: 14rem;
+    height: 14rem;
+    align-self: flex-end;
+  }
+}
