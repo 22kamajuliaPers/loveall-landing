@@ -1,8 +1,14 @@
 "use client";
 
+
+
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import GlowPanel from "./GlowPanel";
+
+
+
 
 interface StepAnimationState {
   number: boolean;
@@ -10,11 +16,14 @@ interface StepAnimationState {
   phone: boolean;
 }
 
+
+
+
 const steps = [
   {
     number: 1,
-    title: "You show us how you watch sports",
-    subtext: "Teams, rivalries, game-day habits — not just a logo.",
+    title: "Build your sports identity",
+    subtext: "Your profile centers around your teams, rivalries, game-day habits — at the stadium, at home, or at the bar.",
     image: "/images/how-1-watch-sports.png",
     phoneOffsetY: 0,
     variant: "peek" as const,
@@ -37,12 +46,15 @@ const steps = [
   },
   {
     number: 4,
-    title: "The app steps back",
-    subtext: "When it's time to focus, discovery pauses.",
+    title: "Meet at the game",
+    subtext: "LoveAll surfaces real upcoming games based on your shared fandoms. Plan a first meeting around something you both already wanted to do.",
     image: "/images/how-4-watch-sports.png",
     phoneOffsetY: -12,
   },
 ];
+
+
+
 
 export default function HowItWorks() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -51,19 +63,31 @@ export default function HowItWorks() {
   );
   const [hasAnimated, setHasAnimated] = useState(false);
 
+
+
+
   useEffect(() => {
     if (hasAnimated) return;
+
+
+
 
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
+
+
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
+
+
+
 
             // If reduced motion, show everything instantly
             if (prefersReducedMotion) {
@@ -73,9 +97,15 @@ export default function HowItWorks() {
               return;
             }
 
+
+
+
             // Animate each step with stagger
             steps.forEach((_, stepIndex) => {
               const baseDelay = 200 + stepIndex * 400;
+
+
+
 
               // Step number appears first
               setTimeout(() => {
@@ -89,6 +119,9 @@ export default function HowItWorks() {
                 });
               }, baseDelay);
 
+
+
+
               // Text appears shortly after number
               setTimeout(() => {
                 setStepStates((prev) => {
@@ -100,6 +133,9 @@ export default function HowItWorks() {
                   return newStates;
                 });
               }, baseDelay + 150);
+
+
+
 
               // Phone appears after text
               setTimeout(() => {
@@ -121,9 +157,15 @@ export default function HowItWorks() {
       }
     );
 
+
+
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
+
+
+
 
     return () => {
       if (sectionRef.current) {
@@ -132,16 +174,25 @@ export default function HowItWorks() {
     };
   }, [hasAnimated]);
 
+
+
+
   return (
     <section
       ref={sectionRef}
-      className="how-it-works-section relative px-6 overflow-hidden pt-20 pb-24 md:pt-32 md:pb-32"
+      className="how-it-works-section relative px-6 overflow-hidden pt-8 pb-10 md:pt-10 md:pb-12"
     >
       {/* Grain/noise overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none grain-overlay" />
 
+
+
+
       {/* Vignette effect */}
       <div className="absolute inset-0 vignette-overlay pointer-events-none" />
+
+
+
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Top intro line */}
@@ -149,7 +200,7 @@ export default function HowItWorks() {
           <p className="text-sm md:text-base text-gray-400 mb-3 font-light">
             So what changes when you open LoveAll?
           </p>
-          
+         
           {/* Subtle down chevron */}
           <div className="flex justify-center">
             <svg
@@ -170,26 +221,32 @@ export default function HowItWorks() {
           </div>
         </div>
 
+
         {/* Faint vertical guide line on left (optional) */}
         <div className="hidden lg:block absolute left-8 top-0 bottom-0 w-px bg-[#4CF2C7]/5" />
 
+
         {/* Steps */}
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-8 md:space-y-10 lg:space-y-12">
           {steps.map((step, index) => {
             const state = stepStates[index];
+
 
             return (
               <div
                 key={index}
-                className="relative"
+                className="relative md:min-h-[360px] lg:min-h-[400px]"
               >
                 {/* Faint horizontal guide line */}
                 <div className="absolute left-0 right-0 top-1/2 h-px bg-[#4CF2C7]/5 hidden md:block" />
 
-                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+
+
+
+                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
                   {/* Left Column: Step Number + Text */}
-                  <div className="relative z-10">
-                    <div className="flex flex-col gap-4 md:gap-6">
+                  <div className="relative z-10 md:self-center">
+                    <div className="flex flex-col gap-3 md:gap-4">
                       {/* Step number badge */}
                       <div
                         className={`transition-all duration-[600ms] ease-out ${
@@ -205,9 +262,12 @@ export default function HowItWorks() {
                         </div>
                       </div>
 
+
+
+
                       {/* Title */}
                       <h3
-                        className={`text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight transition-all duration-[600ms] ease-out delay-75 ${
+                        className={`text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-white leading-tight transition-all duration-[600ms] ease-out delay-75 ${
                           state.text
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-4"
@@ -216,9 +276,12 @@ export default function HowItWorks() {
                         {step.title}
                       </h3>
 
+
+
+
                       {/* Subtext */}
                       <p
-                        className={`text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed font-light transition-all duration-[600ms] ease-out delay-150 ${
+                        className={`text-base md:text-base lg:text-lg text-gray-300 leading-relaxed font-light transition-all duration-[600ms] ease-out delay-150 ${
                           state.text
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-4"
@@ -229,29 +292,39 @@ export default function HowItWorks() {
                     </div>
                   </div>
 
+
+
+
                   {/* Right Column: Phone Mockup or Direct Image */}
-                  <div
-                    className={`transition-all duration-[800ms] ease-out delay-300 ${
-                      state.phone
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }`}
-                  >
-                    {/* All steps: Direct image display with GlowPanel background */}
-                    <div className="relative w-full max-w-[280px] mx-auto" style={{ overflow: "visible" }}>
-                      <GlowPanel>
-                        {/* Image wrapper with crop */}
-                        <div className="relative overflow-hidden rounded-lg max-h-[480px]">
-                          <Image
-                            src={step.image}
-                            alt={`Step ${step.number}: ${step.title}`}
-                            width={280}
-                            height={600}
-                            className="w-full h-auto object-top object-cover"
-                            sizes="(max-width: 768px) 100vw, 280px"
-                          />
+                  {/* Stationary positioning container (no animation) */}
+                  <div className="relative md:self-center">
+                    {/* Stationary container for absolute positioning */}
+                    <div className="relative w-full max-w-[560px] mx-auto md:h-[360px] lg:h-[350px]" style={{ overflow: "visible" }}>
+                      {/* Stationary GlowPanel box (no animation) */}
+                      <GlowPanel className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[400px] h-[160px] md:h-[220px]" />
+                     
+                      {/* Phone slit reveal animation layer */}
+                      <div className="absolute left-1/2 top-1/2 -translate-x-1/5 -translate-y-1/2 z-10 pointer-events-none">
+                        {/* Slit wrapper - same width as phone, overflow hidden, centered on row */}
+                        <div className="relative w-[360px] md:w-[520px] lg:w-[580px] overflow-hidden">
+                          {/* Animated phone wrapper - slides UP from below */}
+                          <div
+                            className={`transition-transform duration-[800ms] ease-out ${
+                              state.phone ? "translate-y-0" : "translate-y-[110%]"
+                            }`}
+                          >
+                            <Image
+                              src={step.image}
+                              alt={`Step ${step.number}: ${step.title}`}
+                              width={560}
+                              height={1200}
+                              className="w-[500px] md:w-[520px] lg:w-[250px] h-auto object-contain"
+                              sizes="(max-width: 768px) 360px, 580px"
+                              priority={step.number === 1}
+                            />
+                          </div>
                         </div>
-                      </GlowPanel>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -261,7 +334,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Bottom anchor line */}
-        <div className="mt-20 md:mt-24 text-center">
+        <div className="mt-12 md:mt-14 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             How LoveAll Works.
           </h2>

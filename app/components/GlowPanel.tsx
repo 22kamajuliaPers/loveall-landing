@@ -1,13 +1,10 @@
 "use client";
 
-import { ReactNode } from "react";
-
 interface GlowPanelProps {
-  children: ReactNode;
   className?: string;
 }
 
-export default function GlowPanel({ children, className = "" }: GlowPanelProps) {
+export default function GlowPanel({ className = "" }: GlowPanelProps) {
   return (
     <div className={`relative ${className}`} style={{ overflow: "visible" }}>
       {/* Soft ambient mint glow behind panel */}
@@ -24,14 +21,10 @@ export default function GlowPanel({ children, className = "" }: GlowPanelProps) 
         }}
       />
 
-      {/* Panel background */}
+      {/* Panel background - wide shallow backdrop */}
       <div 
-        className="absolute -z-10"
+        className="absolute inset-0 -z-10 rounded-2xl"
         style={{
-          top: "-24px",
-          left: "-24px",
-          right: "-24px",
-          bottom: "-24px",
           background: "rgba(0, 0, 0, 0.4)",
           border: "1px solid rgba(76, 242, 199, 0.25)",
           borderRadius: "20px",
@@ -50,11 +43,6 @@ export default function GlowPanel({ children, className = "" }: GlowPanelProps) 
             opacity: 0.9,
           }}
         />
-      </div>
-
-      {/* Content (image) on top */}
-      <div className="relative z-10">
-        {children}
       </div>
     </div>
   );
